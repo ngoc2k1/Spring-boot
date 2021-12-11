@@ -3,7 +3,7 @@ package org.aibles.userservice.service.iml;
 import org.aibles.userservice.model.User;
 import org.aibles.userservice.repository.UserRepository;
 import org.aibles.userservice.service.UserService;
-import org.aibles.userservice.service.exception.NotFoundException;
+import org.aibles.userservice.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

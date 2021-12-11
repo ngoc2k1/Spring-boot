@@ -1,6 +1,10 @@
 package org.aibles.userservice.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,8 +15,13 @@ public class User implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)//AUTO_INCREMENT
     private int id;
+
+    @NotBlank(message = "name must not be null")
     @Column(name = "name")
     private String name;
+
+    @Min(value = 1, message = "age must be over 0")
+    @Max(value = 150, message = "age must be under 151")
     @Column(name = "age")
     private int age;
 

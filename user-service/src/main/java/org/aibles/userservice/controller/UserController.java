@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,14 +29,14 @@ public class UserController {
     }
 
     @PostMapping() //cứ call post là 200-201
-    public ResponseEntity<?> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
         User createdUser = userService.createUser(user);
         return new ResponseEntity<>(createdUser, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     //truyền ID lên backend -> vào db để check[tồn tại 200, k tồn tại 404 not found], còn 400 check validate?
-    public ResponseEntity<?> updateUser(@PathVariable("id") int id, @RequestBody User userUpdated) {
+    public ResponseEntity<?> updateUser(@PathVariable("id") int id, @Valid @RequestBody User userUpdated) {
         return new ResponseEntity<>(userService.updateUser(userUpdated, id), HttpStatus.OK);
     }
 

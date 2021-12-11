@@ -1,4 +1,4 @@
-package org.aibles.userservice.service.exception;
+package org.aibles.userservice.exception;
 
 import org.springframework.http.HttpStatus;
 
