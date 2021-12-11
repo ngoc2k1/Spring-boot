@@ -30,12 +30,7 @@ public class UserServiceIml implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        List<User> userList = userRepository.findAll();
-        if (userList == null) {
-            throw new NotFoundException();
-        } else {
-            return userList;
-        }
+        return userRepository.findAll();
     }
 
     @Override
@@ -51,25 +46,24 @@ public class UserServiceIml implements UserService {
 
     @Override
     public User updateUser(User user, int id) {
-        User updateUser = userRepository.findById(id).orElse(null);
-        if (updateUser == null) {
+        User existingUser = userRepository.findById(id).orElse(null);
+        if (existingUser == null) {
             throw new NotFoundException();
         } else {
-            updateUser.setAge(user.getAge());
-            updateUser.setName(user.getName());
-            userRepository.save(updateUser);
+            existingUser.setAge(user.getAge());
+            existingUser.setName(user.getName());
+            User updateUser = userRepository.save(existingUser);
             return updateUser;
         }
     }
 
     @Override
-    public User deleteUserById(int id) {
-        if (userRepository.findById(id) == null) {
+    public void deleteUserById(int id) {
+        User existingUser = userRepository.findById(id).orElse(null);
+        if (existingUser == null) {
             throw new NotFoundException();
         } else {
-            User deletedUser = userRepository.getById(id);
-            userRepository.deleteById(id);
-            return deletedUser;
+            userRepository.delete(existingUser);
         }
     }
 }

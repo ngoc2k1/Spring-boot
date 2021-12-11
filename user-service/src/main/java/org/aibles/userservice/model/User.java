@@ -9,7 +9,7 @@ import java.util.Objects;
 public class User implements Serializable {
     @Id
     @Column(name = "id")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)//AUTO_INCREMENT
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//AUTO_INCREMENT
     private int id;
     @Column(name = "name")
     private String name;
